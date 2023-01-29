@@ -15,6 +15,8 @@ def make_subgraph(data,hops,node):
 
     # エッジ数
     num_edges=data.num_edges
+    # ノード数
+    num_nodes=data.num_nodes
 
     source=edges[0]
     target=edges[1]
@@ -59,7 +61,7 @@ def make_subgraph(data,hops,node):
     # 抽出ノードリストから新しくdata["edge_index"]を作成する
     """
     subgraph=[[],[]]
-    for n in check_nodes:
+    for n in sorted(check_nodes):
         for i in range(num_edges):
             if n==source[i]:
                 subgraph[0].append(source[i].item())
@@ -70,12 +72,21 @@ def make_subgraph(data,hops,node):
     print("ノード数：",len(check_nodes))
     print("エッジ数：",np.array(subgraph).shape[1])
 
+    # ラベル
+    labels=data.y
+    subgraph_label=[]
+    check_nodes=sorted(list(set(check_nodes)))
+    for c in check_nodes:
+        subgraph_label.append(labels[c].item())
+
+    print("ラベル：", subgraph_label)
+
 
 # 結合しているノードを抽出する関数
 def bfs(check_nodes,hop,num_edges,source,target):
     print(f"hop = {hop}")
     print(f"check_nodes: {len(check_nodes)}")
-    
+
     for j in range(len(check_nodes)):
         for k in range(num_edges):
             if source[k]==check_nodes[j] and not(target[k].item() in check_nodes):

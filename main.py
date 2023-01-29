@@ -7,6 +7,7 @@ from Graphviz import graphviz_show
 # from Visdcc import visdcc_show
 
 from make_subgraph import make_subgraph
+from hop_analysis import hop_analysis
 
 def main():
     # データセット選択
@@ -43,9 +44,12 @@ def main():
     # visdcc_show(data,datasets[d])
 
     # サブグラフ作成
-    hops=2
-    node=0
+    hops=1
+    node=100
     make_subgraph(data,hops,node)
+
+    # ホップ数解析
+    hop_analysis(data)
 
 
 if __name__=="__main__":
