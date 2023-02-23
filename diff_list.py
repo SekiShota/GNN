@@ -28,10 +28,6 @@ def make_deleted_edges(original, partition):
 
     return deleted_edges
 
-    # print("\n削除したエッジ")
-    # for i in range(len(deleted_edges)):
-    #     print(deleted_edges[i])
-
 
 import torch
 
@@ -40,7 +36,6 @@ partition_edge_index=torch.tensor([[1,2,3],[6,7,8]])
 
 result=make_deleted_edges(original=original_edge_index, partition=partition_edge_index)
 
-    
 output_file=open("output.txt","w")
 output_file.write("< deleted edges >\n")
 output_file.write(f"num: {len(result)}\n")
