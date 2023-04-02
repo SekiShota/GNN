@@ -3,10 +3,11 @@ import csv
 import sys
 
 infile=sys.argv[1]
+root_dir=os.path.dirname(infile)
 f=open(file=infile)
 datalist=f.readlines()
 
-output_file="filename.csv"
+output_file=os.path.join(root_dir,"eval_result.csv")
 
 with open(output_file, 'w') as file:
     for i in range(len(datalist)):
